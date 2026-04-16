@@ -1,4 +1,3 @@
-import { form } from 'framer-motion/client';
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
@@ -9,7 +8,7 @@ const [loading, setLoading] = useState(false);
 const location = useLocation()
 const navigate = useNavigate() 
 const email = location.state?.email || "";
-const { success, setSuccess,setError } = useAuth();
+const { setSuccess,setError } = useAuth();
 const [formData, setFormData] = useState({
     email,
     password:""

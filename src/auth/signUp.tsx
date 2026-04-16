@@ -1,7 +1,51 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context-provider/context'; 
 const SignUp = () => {
+  const {setSuccess} = useAuth() 
+  const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        email:"",
+        password:""
+    })  
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>)=> {
+          setFormData({
+            ...formData,
+            [e.target.name] : e.target.value
+          })
+        
+        }
+      const handleSubmit =async(e:React.FormEvent) => {
+        setLoading(true)
+        e.preventDefault()
+      try {
+        const res = await fetch ("http://localhost:3000/api/users/register",{
+        method:"POST",
+        headers : {
+          "content-type":"application/json"
+        },
+        body: JSON.stringify({
+          email :formData.email,
+          password : formData.password
+        })
+       });
+    
+       const data = await res.json()
+          console.log(data)
+        if (!res.ok) { 
+           console.log(data.message)
+          return
+         }
+         navigate("/")
+         setSuccess(true)
+      }
+      
+      finally {
+        setLoading(false)
+          }}
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
           
@@ -35,6 +79,8 @@ const SignUp = () => {
               <label className="text-sm w-full items-center justify-center  flex flex-col gap-1 text-gray-600">
                 Please enter your email address
                 <input
+                name="email"
+                onChange={handleChange}
                 type="email"
                 placeholder=""
                 className="w-[80%] mt-1 h-10 border border-gray-300 font-bold  py-2 outline-none focus:ring-2 focus:ring-orange-400"
@@ -46,6 +92,8 @@ const SignUp = () => {
               <label className="text-sm w-full items-center justify-center  flex flex-col gap-1 text-gray-600">
                 Please enter a password
                 <input
+                name="password"
+                onChange={handleChange}
                 type="password"
                 placeholder=""
                 className="w-[80%] mt-1 h-10 border border-gray-300 font-bold  py-2 outline-none focus:ring-2 focus:ring-orange-400"
@@ -55,7 +103,7 @@ const SignUp = () => {
             </div>
     
             {/* BUTTON */}
-               <button className="w-[80%] h-10 bg-orange-300 hover:bg-orange-400 flex items-center justify-center text-white py-12 rounded-full font-medium transition">
+               <button onClick={handleSubmit} className="w-[80%] h-10 bg-orange-300 hover:bg-orange-400 flex items-center justify-center text-white py-12 rounded-full font-medium transition">
               { loading ? <div className='spinner'></div> :"Continue"}
             </button>
     

@@ -1,7 +1,5 @@
 import React from 'react'
-import { X } from "lucide-react";
 import { useState, useEffect } from 'react';
-import { div } from 'framer-motion/client';
 import { useNavigate } from 'react-router-dom';
 
 export default function AuthPageCheckEmail() {
