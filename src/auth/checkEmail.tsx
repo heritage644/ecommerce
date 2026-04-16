@@ -109,7 +109,7 @@ try{
         </div>
 
         {/* BUTTON */}
-           <button  onClick={handleContinueSubmit} className="w-[80%] h-10 bg-orange-300 hover:bg-orange-400 flex items-center justify-center text-white py-12 rounded-full font-medium transition">
+           <button  onClick={handleContinueSubmit} className="w-[80%] h-10 bg-green-300 hover:bg-green-400 flex items-center justify-center text-white py-12 rounded-full font-medium transition">
           { loading ? <div className='spinner'></div> :"Continue"}
         </button>
 

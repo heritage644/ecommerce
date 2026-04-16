@@ -15,12 +15,42 @@ import NewBottom from "./new-bottom-componene"
 import BeforeFooter from "./before-footer"
 import Footer from "./footer"
 import Popups from "./popup"
+import { useAuth } from "@/context-provider/context"
+import { useEffect } from "react"
+
 export default function Body (){
+const { setName} = useAuth()
 
+const fetchUser = async () => {
+  try {
+      const token = localStorage.getItem("token");
 
+      if (!token) {
+        console.log("No token found");
+        return;
+      }
+    const response = await fetch("http://localhost:3000/api/users/me", {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    if (response.status === 401) {
+        console.log("Token expired or invalid");
+        localStorage.removeItem("token"); 
+        return;
+      }
+    
+    const data = await response.json();
+    setName(data.email);
+    console.log(data);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+    }
+}
 
-
-
+useEffect(() => {
+  fetchUser();
+}, [])
 
 
 const blogArrayList = blog.map((blogList)=>{

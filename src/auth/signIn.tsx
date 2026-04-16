@@ -27,6 +27,7 @@ const [formData, setFormData] = useState({
       setLoading(true)
       e.preventDefault()
      try{
+      
       const res = await fetch ("http://localhost:3000/api/users/login",{
       method:"POST",
       headers : {
@@ -40,11 +41,13 @@ const [formData, setFormData] = useState({
   
      const data = await res.json()
         console.log(data)
+        localStorage.setItem("token", data.accessToken);
       if (!res.ok) { 
         setError(data.message || "invald fields provided");
          console.log(data.message)
         return
        }
+      console.log("Token stored in localStorage:", data.accessToken);
       navigate("/",  {
         state:{email} 
       })
@@ -105,7 +108,7 @@ useEffect(() => {
             </div>
     
             {/* BUTTON */}
-               <button onClick={handleSubmit} className="w-[80%] h-10 bg-orange-300 hover:bg-orange-400 flex items-center justify-center text-white py-12 rounded-full font-medium transition">
+               <button onClick={handleSubmit} className="w-[80%] h-10 bg-green-300 hover:bg-green-400 flex items-center justify-center text-white py-12 rounded-full font-medium transition">
               { loading ? <div className='spinner'></div> :"Continue to app"}
             </button>
     

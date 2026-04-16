@@ -1,6 +1,9 @@
 import { Mail, Phone, Calendar, Pencil } from "lucide-react";
 import OrderRow from "../components/profilecomponent/orderrow";
+import { useAuth } from "@/context-provider/context";
 export default function ProfilePage() {
+const {name} = useAuth();
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-5xl mx-auto space-y-6">
@@ -26,7 +29,7 @@ export default function ProfilePage() {
 
                 <div className="flex flex-wrap gap-4 text-sm text-gray-500 mt-1">
                   <span className="flex items-center gap-1">
-                    <Mail size={14} /> alex.morgan@example.com
+                    <Mail size={14} /> {name}
                   </span>
                   <span className="flex items-center gap-1">
                     <Phone size={14} /> +1 (555) 234-5678
