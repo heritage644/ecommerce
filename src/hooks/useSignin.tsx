@@ -1,12 +1,12 @@
 import { useState } from "react";
-import AuthPage from "@/auth/signUp";
+import AuthPageCheckEmail from "@/auth/checkEmail";
 
-export default function UseSignIn() {
+export default function UseSignUp() {
   const [open, setOpen] = useState(true);
 
   return (
     <div>
-      <AuthPage  />
+      <AuthPageCheckEmail   />
     </div>
   );
 }

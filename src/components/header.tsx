@@ -28,7 +28,7 @@ export default function Header (){
     <button className="number">(219) 555-0114</button>
     <img className="hover:scale-110 transition duration-300" src={search} alt="search.logo" />
     <button onClick={()=>navigate("/cart")} className="hover:scale-110 transition duration-300 "> <img src={cart} alt="cart.logo" /></button>
-   <button onClick={()=>navigate("/signUp")} className="hover:bg-gray-300 rounded-full duration-200 "> <img src={userIcon} alt="user.icon" /></button>
+   <button onClick={()=>navigate("/checkemail")} className="hover:bg-gray-300 rounded-full duration-200 "> <img src={userIcon} alt="user.icon" /></button>
 </div>
 
 
