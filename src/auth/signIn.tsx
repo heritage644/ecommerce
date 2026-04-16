@@ -3,13 +3,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context-provider/context';
 const AuthPages = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("")
- const location = useLocation()
-const navigate = useNavigate()
- const email = location.state?.email || "";
-  const [formData, setFormData] = useState({
+const [loading, setLoading] = useState(false);
+const location = useLocation()
+const navigate = useNavigate() 
+const email = location.state?.email || "";
+const { success, setSuccess,setError } = useAuth();
+const [formData, setFormData] = useState({
     email,
     password:""
   })
@@ -44,13 +45,13 @@ const navigate = useNavigate()
         setError(data.message || "invald fields provided");
          console.log(data.message)
         return
-       
        }
       navigate("/",  {
-        state:{email}
+        state:{email} 
       })
-    
-     }finally {
+     setSuccess(true)
+}
+     finally {
   setLoading(false)
      }
     }
@@ -78,7 +79,7 @@ useEffect(() => {
       
             {/* HEADER */}
             <h2 className="text-xl font-semibold text-center  mb-2">
-              Welcome Back!
+              Welcome Back! {formData.email}
             </h2>
     
             <p className="text-green-600 text-sm text-center ">

@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import { div } from 'framer-motion/client';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function AuthPageCheckEmail() {
-
   const navigate = useNavigate()
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState("")

@@ -7,7 +7,9 @@ import userIcon from "../assets/user_3 1.svg"
 import { useNavigate } from "react-router-dom"
 import search from "../assets/Search.svg"
 import flower from "../assets/plant 1.svg"
+import { useAuth } from "@/context-provider/context"
 export default function Header (){
+    const {success} = useAuth()
     const navigate = useNavigate()
     return (
         <>
@@ -28,7 +30,14 @@ export default function Header (){
     <button className="number">(219) 555-0114</button>
     <img className="hover:scale-110 transition duration-300" src={search} alt="search.logo" />
     <button onClick={()=>navigate("/cart")} className="hover:scale-110 transition duration-300 "> <img src={cart} alt="cart.logo" /></button>
-   <button onClick={()=>navigate("/checkemail")} className="hover:bg-gray-300 rounded-full duration-200 "> <img src={userIcon} alt="user.icon" /></button>
+   
+  {success ? <button onClick={()=>navigate("/profile")} className="hover:bg-gray-300 rounded-full duration-200 "> 
+    <img src={userIcon} alt="user.icon" />
+    </button>:
+    <button onClick={()=>navigate("/checkemail")} className="hover:bg-gray-300 rounded-full duration-200 "> 
+    <img src={userIcon} alt="user.icon" />
+    </button>
+    }
 </div>
 
 
