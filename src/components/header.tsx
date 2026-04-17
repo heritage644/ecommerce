@@ -1,7 +1,5 @@
 
 import cart from "../assets/Cart.svg"
-import heart from "../assets/Heart.svg"
-import call from "../assets/PhoneCall 1.svg"
 import { Link } from "react-router-dom"
 import userIcon from "../assets/user_3 1.svg"
 import { useNavigate } from "react-router-dom"

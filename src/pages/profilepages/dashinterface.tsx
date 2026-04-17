@@ -1,10 +1,7 @@
 import flower from "../../assets/plant 1 (1).svg"
-import { Input } from "@/components/ui/input"
-import { Link } from "react-router-dom";
-import InputFieldgroupModal from "@/pages/profilepages/profileinput/input";
 import { useAuth } from "@/context-provider/context";
 export default function DashboardInterface() {
-  const {open, setOpen,setAddress} = useAuth()
+  const { setOpen,setAddress} = useAuth()
 
   const setOPpenModal =()=>{
     setOpen(true)
