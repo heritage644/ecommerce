@@ -9,7 +9,7 @@ import ProfileDashboard from './dashboards/profileDashboard';
 import ExploreDashboard from './dashboards/exploreDAshboard';
 import About from './pages/about';
 import UseSignUp from './hooks/useSignin';
-import InputFieldgroup from './pages/profilepages/input';
+import InputFieldgroup from './pages/profilepages/profileinput/input';
 
 
 function App() {

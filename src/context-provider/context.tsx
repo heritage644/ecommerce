@@ -12,6 +12,8 @@ interface AuthContextType {
   setName:React.Dispatch<React.SetStateAction<string>>;
   open:boolean;
   setOpen:React.Dispatch<React.SetStateAction<boolean>>;
+  address:boolean;
+  setAddress:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // 2. Create context
@@ -23,10 +25,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-   const [open, setOpen] = useState(false)
+   const [open, setOpen] = useState(false);
+   const [address, setAddress] = useState(false)
    
   return (
-    <authContext.Provider value={{ emails, setEmail, success, setSuccess, error, setError, setName, name, open, setOpen }}>
+    <authContext.Provider value={{ emails, 
+      setEmail, success, 
+     setSuccess,error, setError, setName, name,
+     open, setOpen, address, setAddress }}>
       {children}
     </authContext.Provider>
   );
