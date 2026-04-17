@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/context-provider/context';
+
 export default function AuthPageCheckEmail() {
   const navigate = useNavigate()
 const [loading, setLoading] = useState(false);

@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import "./input.css"
 import App from './App.tsx'
-import NewPage from './components/newpage.tsx'
 import { AuthProvider } from './context-provider/context.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

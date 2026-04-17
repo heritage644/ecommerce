@@ -271,8 +271,8 @@ header{
      width: 100%;
      background: rgba(255, 255, 255, 0.15); /* transparent white */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px); /* the magic: blurs whatever is behind */
   -webkit-backdrop-filter: blur(10px); /* Safari support */
+  backdrop-filter: blur(10px); /* the magic: blurs whatever is behind */
   border: 1px solid rgba(255, 255, 255, 0.3);
    display: flex;
   justify-content: space-between;;    

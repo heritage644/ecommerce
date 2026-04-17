@@ -1,12 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context-provider/context';
 const AuthPages = () => {
   const isAuthenticated = !!localStorage.getItem("email");
 const [loading, setLoading] = useState(false);
-const location = useLocation()
 const navigate = useNavigate() 
 const email = localStorage.getItem("email");
 const { setSuccess,setError,name } = useAuth();
