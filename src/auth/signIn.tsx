@@ -4,11 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context-provider/context';
 const AuthPages = () => {
+  const isAuthenticated = !!localStorage.getItem("email");
 const [loading, setLoading] = useState(false);
 const location = useLocation()
 const navigate = useNavigate() 
-const email = location.state?.email || "";
-const { setSuccess,setError } = useAuth();
+const email = localStorage.getItem("email");
+const { setSuccess,setError,name } = useAuth();
 const [formData, setFormData] = useState({
     email,
     password:""
@@ -41,25 +42,26 @@ const [formData, setFormData] = useState({
   
      const data = await res.json()
         console.log(data)
-        localStorage.setItem("token", data.accessToken);
       if (!res.ok) { 
         setError(data.message || "invald fields provided");
          console.log(data.message)
         return
        }
+       localStorage.setItem("token", data.accessToken);
       console.log("Token stored in localStorage:", data.accessToken);
-      navigate("/",  {
-        state:{email} 
-      })
-     setSuccess(true)
+      navigate("/",)
+      if (data.accessToken) {
+        setSuccess(true)
+      }
+    
 }
      finally {
   setLoading(false)
      }
     }
 useEffect(() => {
-  if (!location.state?.email) {
-    navigate("/enter-email");
+  if (!isAuthenticated) {
+    navigate("/checkemail");
   }
 }, []);
 
@@ -81,7 +83,7 @@ useEffect(() => {
       
             {/* HEADER */}
             <h2 className="text-xl font-semibold text-center  mb-2">
-              Welcome Back! {formData.email}
+              Welcome Back! {name }
             </h2>
     
             <p className="text-green-600 text-sm text-center ">

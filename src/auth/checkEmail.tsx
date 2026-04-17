@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '@/context-provider/context';
 export default function AuthPageCheckEmail() {
   const navigate = useNavigate()
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState("")
+
  const [formData, setFormData] = useState({
   email:""
  })
@@ -17,7 +18,7 @@ const [error, setError] = useState("")
     })
  }
 
-const email = formData.email
+
 const handleContinueSubmit = async(e:React.FormEvent) => {
    setLoading(true)
     e.preventDefault()
@@ -36,15 +37,13 @@ try{
 
      } 
      if(data.checked) {
-      navigate("/signin",{
-        state: {email}
-      })
-
-      return
+      navigate("/signin")
+      localStorage.setItem("email", data.email);
      } else {
-         navigate("/signup",{
-          state: {email}
-         })
+         navigate("/signup")
+         return
+          
+         
         }
 } finally {
   setLoading(false)

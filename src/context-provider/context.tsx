@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from "react";
 
 // 1. Type definition
 interface AuthContextType {
-  email: string;
+  emails: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   success: boolean;
   setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,13 +17,13 @@ const authContext = createContext<AuthContextType | undefined>(undefined);
 
 // 3. Provider component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [email, setEmail] = useState("");
+  const [emails, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-
+   
   return (
-    <authContext.Provider value={{ email, setEmail, success, setSuccess, error, setError,setName,name }}>
+    <authContext.Provider value={{ emails, setEmail, success, setSuccess, error, setError,setName,name }}>
       {children}
     </authContext.Provider>
   );

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context-provider/context'; 
 const SignUp = () => {
+  
   const {setSuccess} = useAuth() 
   const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -40,7 +41,9 @@ const SignUp = () => {
           return
          }
          navigate("/")
-         setSuccess(true)
+         if (data.accessToken) {
+          setSuccess(true)
+        }
       }
       
       finally {
