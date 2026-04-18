@@ -30,6 +30,7 @@ const fetchUser = async () => {
         return;
       }
     const response = await fetch("http://localhost:3000/api/users/me", {
+      method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
       }

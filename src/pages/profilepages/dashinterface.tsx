@@ -1,7 +1,7 @@
 import flower from "../../assets/plant 1 (1).svg"
 import { useAuth } from "@/context-provider/context";
 export default function DashboardInterface() {
-  const { setOpen,setAddress} = useAuth()
+  const { setOpen,setAddress, profileName, name} = useAuth()
 
   const setOPpenModal =()=>{
     setOpen(true)
@@ -91,8 +91,8 @@ export default function DashboardInterface() {
             <h2 className="card-title">ACCOUNT DETAILS</h2>
             <div className="flex items-start justify-between">
               <div>
-                <p className="account-name">Okey Chukwu</p>
-              <p className="account-email">okjohn644@gmail.com</p> 
+                <p className="account-name"> {profileName} </p>
+              <p className="account-email">{name}</p> 
               </div>
                <button onClick={setOPpenModal} className="edit-btn">{""}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">

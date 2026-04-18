@@ -1,17 +1,55 @@
-
+import React, { useState } from "react"
 import flower from "../../../assets/plant 1 (1).svg"
 import { Button } from "@/components/ui/button"
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context-provider/context"
 const InputFieldgroupModal = () => {
- 
 const {open, setOpen} = useAuth()
+
+const [formData, setFormData] = useState({
+   name:""
+ })
+const handleChange = ( e : React.ChangeEvent<HTMLInputElement>
+     | React.ChangeEvent<HTMLTextAreaElement>)=>{
+       
+  setFormData({
+    ...formData,
+    [e.target.name] : e.target.value
+  })
+}
+
+const updateUser = async (e:React.FormEvent)=> {
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    console.log("No token found");
+    return;
+  } 
+  const res = await fetch ("http://localhost:3000/api/users/addProfile",{
+    
+    method :"PUT",
+    headers: {
+      "Content-Type":"application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body:JSON.stringify({profile : formData})
+   } 
+);
+const data = await res.json()
+if (!res.ok) {
+  console.error("Error:", data.error);
+  return;
+}
+console.log(res)
+  
+  console.log(data, "updated data")     
+
+}
   return (
     <>
       {/* 🔥 TRIGGER BUTTON */}
@@ -40,36 +78,25 @@ const {open, setOpen} = useAuth()
 
             {/* TITLE */}
             <h2 className="text-lg font-semibold mb-4 text-center">
-                <h3 className="flex  items-center justify-center ">Fa<img src={flower} alt="flower.bg" /> m<strong className="text-orange-400 border-b border-green-400 ">Nest</strong>
-            </h3>Account 
-              Update Profile
+                <span className="flex  items-center justify-center ">Fa<img src={flower} alt="flower.bg" /> m<strong className="text-orange-400 border-b border-green-400 ">Nest</strong>
+            </span>Account 
+              Update Profile Name
             </h2>
 
             {/* FORM */}
-            <form className="w-[80%] ml-5 items-center justify-center flex">
+            <form onSubmit={updateUser} className="w-[80%] ml-5 items-center justify-center flex">
               <FieldGroup>
                 <Field>
                   <FieldLabel htmlFor="name">Name</FieldLabel>
-                  <Input className="" id="name" placeholder="Jordan Lee" />
+                  <Input  name='name' type="text" onChange={handleChange} className="" id="name" placeholder="Jordan123" />
                 </Field>
-
-                <Field>
-                  <FieldLabel htmlFor="email">Email</FieldLabel>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="name@example.com"
-                  />
-                  <FieldDescription>
-                    We&apos;ll send updates to this address.
-                  </FieldDescription>
-                </Field>
+             
 
                 <Field className="w-1/2" orientation="horizontal">
                   <Button className="bg-orange-300 hover:bg-orange-400 w-full" type="reset" variant="outline">
                     Reset
                   </Button>
-                  <Button className="w-full bg-gray-500 text-white  hover:bg-gray-700" type="submit">Submit</Button>
+                  <Button  type="submit"  className="w-full bg-gray-500 text-white  hover:bg-gray-700">Submit</Button>
                 </Field>
               </FieldGroup>
             </form>

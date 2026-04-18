@@ -42,11 +42,10 @@ const [formData, setFormData] = useState({
         console.log(data)
       if (!res.ok) { 
         setError(data.message || "invald fields provided");
-         console.log(data.message)
+         
         return
        }
        localStorage.setItem("token", data.accessToken);
-      console.log("Token stored in localStorage:", data.accessToken);
       navigate("/",)
       if (data.accessToken) {
         setSuccess(true)
