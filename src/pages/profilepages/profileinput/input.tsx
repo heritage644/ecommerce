@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context-provider/context"
 const InputFieldgroupModal = () => {
-const {open, setOpen} = useAuth()
+const {open, setOpen, userId, setUserId} = useAuth()
 
 const [formData, setFormData] = useState({
    name:""
@@ -44,11 +44,9 @@ const data = await res.json()
 if (!res.ok) {
   console.error("Error:", data.error);
   return;
-}
-console.log(res)
-  
-  console.log(data, "updated data")     
-
+}     
+setUserId(data._id)
+console.log("Profile updated successfully:", data);
 }
   return (
     <>

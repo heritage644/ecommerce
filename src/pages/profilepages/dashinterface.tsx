@@ -1,8 +1,8 @@
 import flower from "../../assets/plant 1 (1).svg"
 import { useAuth } from "@/context-provider/context";
 export default function DashboardInterface() {
-  const { setOpen,setAddress, profileName, name} = useAuth()
-
+  const { setOpen, profileAddress, profileName, name, setSelectedAddress, setAddress} = useAuth()
+const hasAddress = profileAddress?.length > 0;
   const setOPpenModal =()=>{
     setOpen(true)
   }
@@ -107,9 +107,11 @@ export default function DashboardInterface() {
           <div className="card">
             <div className="card-header">
               <h2 className="card-title">ADDRESS BOOK</h2>
-              <button onClick={()=>{
-                setAddress(true)
-              }} className="edit-btn">{""}
+              <button disabled={hasAddress}  onClick={() => {
+          setSelectedAddress(null); // 👈 CREATE MODE
+          setAddress(true);
+          
+        }} className="edit-btn">{""}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
@@ -118,10 +120,23 @@ export default function DashboardInterface() {
             </div>
             <div className="card-content">
               <p className="address-label">Your default shipping address:</p>
-              <p className="address-name">Okey Chukwu</p>
-              <p className="address-line">17,Adamson barracks ojo</p>
-              <p className="address-line">FESTAC (7th Avenue), Lagos</p>
-              <p className="address-phone">+234 8169315045 / +234 9058480421</p>
+        {profileAddress.map((addr: any) => (
+        <div
+          key={addr._id}
+          onClick={() => {
+            setSelectedAddress(addr); // 👈 EDIT MODE
+            setAddress(true);
+          }}
+          className=" p-3 cursor-pointer mb-2"
+        >
+          <p>{addr.fullName.toUpperCase()}</p>
+          <p>{addr.addressLine}</p>
+          <p>{addr.city}</p>
+          <p>{addr.state}</p>
+         <p>{addr.phone}</p>
+          
+        </div>
+      ))}
             </div>
           </div>
 
