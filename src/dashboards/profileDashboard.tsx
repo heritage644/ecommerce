@@ -4,7 +4,7 @@ import { useAuth } from "@/context-provider/context";
 import AddressFieldgroupModal from "@/pages/profilepages/addressinput/addressinput";
 import { useEffect } from "react";
 export default function Dashboard() {
-  const {open,  address, profileName, setProfileAddress, setProfileName} = useAuth()
+  const {open,  address, setProfileAddress, setProfileName} = useAuth()
 useEffect(()=>{
        const fetchProfile = async () => { 
       const res = await fetch("http://localhost:3000/api/users/profile",{

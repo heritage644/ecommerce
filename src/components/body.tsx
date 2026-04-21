@@ -26,7 +26,7 @@ const fetchUser = async () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        console.log("No token found");
+    console.log("No token found");
         return;
       }
     const response = await fetch("http://localhost:3000/api/users/me", {

@@ -10,8 +10,7 @@ import ExploreDashboard from './dashboards/exploreDAshboard';
 import About from './pages/about';
 import UseSignUp from './hooks/useSignin';
 import InputFieldgroup from './pages/profilepages/profileinput/input';
-
-
+import Blog from './pages/blog';
 function App() {
   
 
@@ -29,6 +28,8 @@ function App() {
           <Route path="/input" element={<InputFieldgroup />} />
            <Route path="/cart" element={<CartDashboard/>} />
           <Route path="/profile" element={<ProfileDashboard />} />
+           
+          <Route path="/blog" element={<Blog />} />
            <Route path="/explore" element={<ExploreDashboard />} />
           <Route path="*" element={<NotFound />} />
   </Route>

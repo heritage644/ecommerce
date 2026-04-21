@@ -12,13 +12,14 @@ export default function Header (){
     const {name} = useAuth()
     const navigate = useNavigate()
     const isAuthenticated = !!localStorage.getItem("token");
+   
     return (
         <>
         <header className="header">
           <div>
               <ul className="lists">
-                <li className="homelist">Home</li>
-                 <Link to=""> <li>blog</li></Link>
+                <Link to="/"> <li  className="homelist">Home</li></Link>
+                 <Link to="/blog"> <li>blog</li></Link>
                   <Link to="/about" className="hover:border-b border-green-400 transition duration-300"> <li>About</li></Link>
             </ul>
       </div>

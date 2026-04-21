@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context-provider/context"
 const InputFieldgroupModal = () => {
-const {open, setOpen, userId, setUserId} = useAuth()
+const {open, setOpen, setUserId} = useAuth()
 
 const [formData, setFormData] = useState({
    name:""
@@ -23,7 +23,7 @@ const handleChange = ( e : React.ChangeEvent<HTMLInputElement>
   })
 }
 
-const updateUser = async (e:React.FormEvent)=> {
+const updateUser = async ()=> {
 
   const token = localStorage.getItem("token");
   if (!token) {

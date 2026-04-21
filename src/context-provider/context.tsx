@@ -44,8 +44,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     <authContext.Provider value={{ emails, 
       setEmail, success, 
      setSuccess,error, setError, setName, name,
-     open, setOpen, address, setAddress, profileName, setProfileName,
-      profileAddress, setProfileAddress, selectedAddress, setSelectedAddress, userId, setUserId }}>
+     open, setOpen, address, setAddress, profileName, setProfileName,  profileAddress, setProfileAddress, selectedAddress, setSelectedAddress, userId, setUserId }}>
       {children}
     </authContext.Provider>
   );

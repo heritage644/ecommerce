@@ -80,7 +80,7 @@ useEffect(() => {
       
             {/* HEADER */}
             <h2 className="text-xl font-semibold text-center  mb-2">
-              Welcome Back! {name }
+              Welcome Back! {email }
             </h2>
     
             <p className="text-green-600 text-sm text-center ">

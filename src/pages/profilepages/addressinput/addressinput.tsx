@@ -9,8 +9,6 @@ const AddressFieldgroupModal = () => {
   const {
     address,
     setAddress,
-    profileAddress,
-    setProfileAddress,
     selectedAddress,
     setSelectedAddress,
   } = useAuth();
@@ -57,8 +55,8 @@ const AddressFieldgroupModal = () => {
     });
   };
 
-  const submitAddress = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const submitAddress = async () => {
+
 
     const token = localStorage.getItem("token");
     if (!token) return;

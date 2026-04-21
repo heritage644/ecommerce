@@ -1,11 +1,25 @@
 import flower from "../../assets/plant 1 (1).svg"
 import { useAuth } from "@/context-provider/context";
+import { useNavigate } from "react-router-dom";
+import { HomeIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 export default function DashboardInterface() {
+    const navigate = useNavigate()
   const { setOpen, profileAddress, profileName, name, setSelectedAddress, setAddress} = useAuth()
 const hasAddress = profileAddress?.length > 0;
   const setOPpenModal =()=>{
     setOpen(true)
   }
+    const isAuthenticated = !!localStorage.getItem("token");
+  const logOutSession = ()=> {
+    localStorage.removeItem("email")
+    localStorage.removeItem("token")
+    
+    navigate("/checkemail")
+
+  }
+ 
+ 
   return (
      <div className="dashboard-container">
       {/* Sidebar */}
@@ -83,8 +97,8 @@ const hasAddress = profileAddress?.length > 0;
 
       {/* Main Content */}
       <main className="main-content">
-        <h1 className="page-title">Account Overview</h1>
-
+       <Link to="/"> <h1 className="page-title flex items-center  gap-3">  <HomeIcon/>  Account Overview</h1>
+</Link>
         <div className="content-grid">
           {/* Account Details */}
           <div className="card ">
@@ -162,9 +176,16 @@ const hasAddress = profileAddress?.length > 0;
               </p>
               <a href="#" className="newsletter-link">Edit Newsletter preferences</a>
             </div>
+         
           </div>
         </div>
+        { isAuthenticated && <  div className="bg-red-500 h-10 flex items-center justify-center w-[10%] "> 
+         < button onClick={logOutSession} className="font-bold hover:bg-red-700 transition w-full h-full text-white">
+            Log Out
+         </button>
+         </div>}
       </main>
     </div> 
+    
   );
 }

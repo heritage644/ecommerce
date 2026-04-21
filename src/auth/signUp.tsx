@@ -40,7 +40,9 @@ const SignUp = () => {
            console.log(data.message)
           return
          }
-         navigate("/")
+           navigate("/signin")
+            localStorage.setItem("email", data.email);
+            console.log(data.email)
          if (data.accessToken) {
           setSuccess(true)
         }
