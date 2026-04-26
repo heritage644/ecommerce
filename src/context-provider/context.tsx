@@ -22,6 +22,8 @@ interface AuthContextType {
   setSelectedAddress:React.Dispatch<React.SetStateAction<any>>;
   userId:string;
   setUserId:React.Dispatch<React.SetStateAction<string>>;
+  openItem:boolean;
+  setOpenItem:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // 2. Create context
@@ -39,12 +41,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
    const [profileAddress, setProfileAddress] = useState<string[]>([])
    const [selectedAddress, setSelectedAddress] = useState<any>(null);
    const [userId, setUserId] = useState<string>("")
+   const [openItem, setOpenItem] = useState(false)
    
   return (
     <authContext.Provider value={{ emails, 
       setEmail, success, 
      setSuccess,error, setError, setName, name,
-     open, setOpen, address, setAddress, profileName, setProfileName,  profileAddress, setProfileAddress, selectedAddress, setSelectedAddress, userId, setUserId }}>
+     open, setOpen, address, setAddress, profileName, setProfileName,
+     
+     openItem, setOpenItem, profileAddress, setProfileAddress, selectedAddress, setSelectedAddress, userId, setUserId }}>
       {children}
     </authContext.Provider>
   );

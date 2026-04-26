@@ -61,8 +61,8 @@ export default function Bestsellertwo(props:sellerproductt){
                 <img src={props.addToCards} alt="" className="addtocart" />
               )}
             </button>
-                    <button><img src={props.quickView} alt="" />!</button>
-                    <button><img src={props.whishlist} alt="" />!</button>
+                    <button><img src={props.quickView} alt="" />{""}</button>
+                    <button><img src={props.whishlist} alt="" />{""}</button>
                   </div>
                   
                 </div>

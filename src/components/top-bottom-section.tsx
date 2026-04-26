@@ -1,5 +1,6 @@
 import buttonarrow from "../assets/Group.svg"
 import  { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 export default function Topbottom(){
 
 
@@ -73,7 +74,7 @@ export default function Topbottom(){
               <span className="organic">100% ORGANIC</span>
               <h1>Fruits & Vegetable</h1>
               <span className="starting">Starting at: <strong className="price">$11.9</strong></span>
-           <div>   <button className="shopnows">Shop Now <img src={buttonarrow} alt="" /></button></div>
+           <div>   <Link to="/shopnow"><button className="shopnows">Shop Now <img src={buttonarrow} alt="" /></button></Link></div>
 
 
             </div>
@@ -103,7 +104,7 @@ export default function Topbottom(){
                 </div>
 
              <div>
-                 <button className="shopnows">Shop Now <img src={buttonarrow} alt="" /></button></div>
+               <Link to="/shopnow">  <button className="shopnows">Shop Now <img src={buttonarrow} alt="" /></button></Link></div>
             </div>
 
 
