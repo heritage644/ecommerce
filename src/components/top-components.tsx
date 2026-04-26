@@ -28,7 +28,7 @@ const changeSlide = () => {
                <h2>Fresh & Healthy Organic Food</h2>
                <span className="spanned">Sale up to <strong> 30% off</strong></span>
                <p>Free shipping on all your order. we deliver, you enjoy</p>
-              <div className="btndiv"> <Link to="/shopnow" className="btn">Shop now <img src={buttonarrow}alt="" /> </Link></div>
+              <div className="btndiv"> <Link to="/explore" className="btn">Shop now <img src={buttonarrow}alt="" /> </Link></div>
             </div>
          </div>
            <button  className="arrows" onClick={changeSlide}>{" "}  <img src={leftArrow} alt="" /></button>
@@ -56,7 +56,7 @@ const changeSlide = () => {
                <h2> Fresh & <br /> Healthy <br /> Organic Food</h2>
                <span className="spanned">Sale up to <strong> 30% off</strong></span>
                <p>Free shipping on all your order. we deliver, you enjoy</p>
-              <div className="btndiv"> <Link to="/shopnow" className="btn">Shop Now <img src={buttonarrow}alt="" /> </Link></div>
+              <div className="btndiv"> <Link to="/explore" className="btn">Shop Now <img src={buttonarrow}alt="" /> </Link></div>
             </div>
         </div>
            <button className="arrows" onClick={changeSlide}>{""}  <img src={leftArrow} alt=""  /></button>

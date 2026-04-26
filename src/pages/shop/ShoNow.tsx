@@ -4,6 +4,8 @@ import Header from "@/components/header";
 import flower from "../../assets/plant 1.svg"
 import addToCatalog from "../../assets/Add To Cart.svg"
 import quickView from "../../assets/Quick View.svg"
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context-provider/context";
 import addedtocatalog from "../../assets/Add To Cart (1).svg"
 interface Product {
   _id: string;
@@ -21,8 +23,9 @@ export default function ShopNow() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [added, setAddedToCart] = useState<Product[]>([]);
+  const {setOpenItem} = useAuth()
   
-  
+const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -35,7 +38,7 @@ export default function ShopNow() {
         });
         const data = await res.json();
         setProducts(data);
-        console.log(data.Image);
+        
       } catch (err) {
         console.error(err);
       } finally {
@@ -45,7 +48,10 @@ export default function ShopNow() {
 
     fetchProducts();
   }, []);
-
+const handleProductClick = (product: Product) => {
+  setOpenItem(product);
+  navigate("/fruit");
+};
 
 const { addToCart, removeFromCart, isInCart } = useCart();
 
@@ -90,7 +96,7 @@ const { addToCart, removeFromCart, isInCart } = useCart();
           </div>
 
           {/* Products Grid */}
-          <div style={{
+          <div  style={{
             paddingTop:"20px"
           }} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {products.slice(0, 6).map((product) => {
@@ -104,6 +110,8 @@ const { addToCart, removeFromCart, isInCart } = useCart();
                 style={{
                     paddingTop:"10px"
                 }}
+              
+                 onClick={() => handleProductClick(product)}
                   key={product._id}
                   className="h-80 border-3 border-green-400 rounded-sm bg-grey-100
                   
@@ -180,7 +188,9 @@ const { addToCart, removeFromCart, isInCart } = useCart();
 
                         ({product.rating})
 
-                        <button onClick={()=>handleCart(product, inCart)}> {inCart ? <img className="w-7" src={addedtocatalog} alt="quickview" /> : <img className="w-7" src={addToCatalog} alt="quickview" />} </button>
+                        <button onClick={(e) => {
+                          e.stopPropagation(); // 🔥 VERY IMPORTANT
+                          handleCart(product, inCart); }}> {inCart ? <img className="w-7" src={addedtocatalog} alt="quickview" /> : <img className="w-7" src={addToCatalog} alt="quickview" />} </button>
                       </span>
                     </div>
                   </div>
@@ -278,7 +288,10 @@ const { addToCart, removeFromCart, isInCart } = useCart();
                       </div>
                       <span className="text-xs flex items-center gap-10 text-gray-500">
                         ({product.rating})
-                         <button onClick={()=>handleCart(product, inCart)}> {inCart ? <img className="w-7" src={addedtocatalog} alt="quickview" /> : <img className="w-7" src={addToCatalog} alt="quickview" />} </button>
+                         <button onClick={(e) => {
+  e.stopPropagation();
+  handleCart(product, inCart);
+}}> {inCart ? <img className="w-7" src={addedtocatalog} alt="quickview" /> : <img className="w-7" src={addToCatalog} alt="quickview" />} </button>
                       </span>
                     </div>
                   </div>
@@ -367,7 +380,10 @@ const { addToCart, removeFromCart, isInCart } = useCart();
                     </div>
                     <span className="text-xs flex items-center gap-10 text-gray-500">
                       ({product.rating})
-                        <button onClick={()=>handleCart(product, inCart)}> {inCart ? <img className="w-7" src={addedtocatalog} alt="quickview" /> : <img className="w-7" src={addToCatalog} alt="quickview" />} </button>
+                        <button onClick={(e) => {
+  e.stopPropagation();
+  handleCart(product, inCart);
+}}> {inCart ? <img className="w-7" src={addedtocatalog} alt="quickview" /> : <img className="w-7" src={addToCatalog} alt="quickview" />} </button>
                       
                     </span>
                   </div>

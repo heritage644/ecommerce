@@ -20,6 +20,7 @@ import Inbox from './pages/profilepages/subpagesfordashbaord/inbox';
 import Wishlist from './pages/profilepages/subpagesfordashbaord/wishlist';
 import FollowedSellers from './pages/profilepages/subpagesfordashbaord/FollowedSellers';
 import Orders from './pages/profilepages/subpagesfordashbaord/Orders';
+import SingleItem from './pages/shop/singleItem';
 function App() {
   
 
@@ -36,6 +37,7 @@ function App() {
     <Route path="/input" element={<InputFieldgroup />} />
     <Route path="/cart" element={<CartDashboard />} />
     <Route path="/profile" element={<ProfileDashboard />} />
+    <Route path="/fruit" element={<SingleItem />} />
     <Route path="/blog" element={<Blog />} />
     <Route path="/explore" element={<ExploreDashboard />} />
 

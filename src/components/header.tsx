@@ -21,6 +21,7 @@ export default function Header (){
                 <Link to="/"> <li  className="homelist">Home</li></Link>
                  <Link to="/blog"> <li>blog</li></Link>
                   <Link to="/about" className="hover:border-b border-green-400 transition duration-300"> <li>About</li></Link>
+                  <Link to="/explore" className="hover:border-b border-green-400 transition duration-300"> <li>Shop</li></Link>
             </ul>
       </div>
                <div className="header-text">
